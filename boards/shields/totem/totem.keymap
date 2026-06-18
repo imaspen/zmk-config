@@ -98,10 +98,11 @@
             label = "Semicolon/Less than";
 
             // my mac keyboard layout swaps p/; hence p here is actually ;
+
             bindings = <&kp P>, <&kp LESS_THAN>;
 
             #binding-cells = <0>;
-            mods = <(MOD_LCTL|MOD_RCTL)>;
+            mods = <(MOD_LGUI|MOD_RGUI)>;
         };
 
         dot_morph: dot_morph {
@@ -118,10 +119,11 @@
             label = "Colon/Greater than";
 
             // my mac keyboard layout swaps P/: hence P here is actually :
+
             bindings = <&kp LS(P)>, <&kp GREATER_THAN>;
 
             #binding-cells = <0>;
-            mods = <(MOD_LCTL|MOD_RCTL)>;
+            mods = <(MOD_LGUI|MOD_RGUI)>;
         };
 
         qmark_morph: qmark_morph {

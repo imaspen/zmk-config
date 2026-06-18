@@ -15,11 +15,13 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
 
+// Layer IDs
 #define BASE 0
 #define NAV  1
 #define SYM  2
 #define ADJ  3
 
+// Key Groups
 #define KEYS_L       0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 25
 #define KEYS_R       5 6 7 8 9 15 16 17 18 19 26 27 28 29 30 31
 #define KEYS_L_THUMB 32 33 34
@@ -31,15 +33,23 @@
         compatible = "zmk,combos";
 
         combo_esc_l {
-            timeout-ms = <200>;
             key-positions = <1 2>;
             bindings = <&kp ESC>;
         };
 
         combo_esc_r {
-            timeout-ms = <200>;
             key-positions = <7 8>;
             bindings = <&kp ESC>;
+        };
+
+        combo_bslash {
+            bindings = <&kp BACKSLASH>;
+            key-positions = <12 23>;
+        };
+
+        combo_fslash {
+            bindings = <&kp FSLH>;
+            key-positions = <17 28>;
         };
     };
 
@@ -71,6 +81,51 @@
             hold-trigger-on-release;
             hold-trigger-key-positions = <KEYS_L KEYS_THUMBS>;
         };
+
+        comma_inner_morph: comma_inner_morph {
+            compatible = "zmk,behavior-mod-morph";
+            label = "COMMA_INNER_MORPH";
+            bindings = <&kp SEMICOLON>, <&kp LESS_THAN>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LCTL|MOD_RCTL)>;
+        };
+
+        comma_morph: comma_morph {
+            compatible = "zmk,behavior-mod-morph";
+            label = "Comma/Semicolon/Less than";
+            bindings = <&kp COMMA>, <&comma_inner_morph>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        dot_inner_morph: dot_inner_morph {
+            compatible = "zmk,behavior-mod-morph";
+            label = "Colon/Greater than";
+            bindings = <&kp COLON>, <&kp GREATER_THAN>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LCTL|MOD_RCTL)>;
+        };
+
+        dot_morph: dot_morph {
+            compatible = "zmk,behavior-mod-morph";
+            label = "Dot/Colon/Greater than";
+            bindings = <&kp DOT>, <&dot_inner_morph>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        qmark_morph: qmark_morph {
+            compatible = "zmk,behavior-mod-morph";
+            label = "Question Mark/Exclamation Point";
+            bindings = <&kp QUESTION>, <&kp EXCLAMATION>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
     };
 
     keymap {
@@ -78,18 +133,16 @@
 
         base_layer {
             label = "BASE";
-
             bindings = <
-       &kp Q         &kp W        &kp E        &kp R          &kp T      &kp Y    &kp U          &kp I        &kp O        &kp P
-       &hml LCTRL A  &hml LALT S  &hml LGUI D  &hml LSHFT F   &kp G      &kp H    &hmr RSHFT J   &hmr RGUI K  &hmr RALT L  &hmr RCTRL SEMI
-&none  &kp Z         &kp X        &kp C        &kp V          &kp B      &kp N    &kp M          &kp COMMA    &kp DOT      &kp FSLH         &none
+       &kp Q         &kp W        &kp E        &kp R          &kp T      &kp Y    &kp U          &kp I         &kp O        &kp SINGLE_QUOTE
+       &hml LCTRL A  &hml LALT S  &hml LGUI D  &hml LSHFT F   &kp G      &kp H    &hmr RSHFT J   &hmr RGUI K   &hmr RALT L  &hmr RCTRL SEMI
+&none  &kp Z         &kp X        &kp C        &kp V          &kp B      &kp N    &kp M          &comma_morph  &dot_morph   &qmark_morph      &none
                                   &kp BSPC     &lt NAV SPACE  &kp TAB    &kp RET  &lt SYM SPACE  &kp BSPC
             >;
         };
 
         nav_layer {
             label = "NAVI";
-
             bindings = <
         &kp ESC    &trans     &kp UP    &kp EQUAL  &kp LBRC    &kp RBRC  &kp KP_N7      &kp KP_N8  &kp KP_N9  &kp KP_PLUS
         &kp LSHFT  &kp LEFT   &kp DOWN  &kp RIGHT  &kp LBKT    &kp RBKT  &kp KP_N4      &kp KP_N5  &kp KP_N6  &kp KP_MINUS
@@ -100,7 +153,6 @@
 
         sim_layer {
             label = "SYM";
-
             bindings = <
         &kp EXCL     &kp AT       &kp HASH   &kp DLLR  &kp PRCNT    &kp CARET     &kp AMPS        &kp SQT     &kp DQT     &kp EQUAL
         &kp RA(A)    &trans       &kp RA(S)  &trans    &trans       &kp C_MUTE    &kp LS(RA(N4))  &kp RA(N5)  &kp RA(N4)  &kp UNDER
@@ -111,7 +163,6 @@
 
         adjust_layer {
             label = "ADJ";
-
             bindings = <
                 &sys_reset   &bt BT_CLR  &out OUT_TOG  &trans  &trans    &trans  &kp F7  &kp F8  &kp F9  &kp F12
                 &bootloader  &bt BT_NXT  &trans        &trans  &trans    &trans  &kp F4  &kp F5  &kp F6  &kp F11

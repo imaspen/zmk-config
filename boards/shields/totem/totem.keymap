@@ -54,7 +54,9 @@
             key-positions = <17 28>;
         };
     };
+};
 
+/ {
     behaviors {
         hml: homerow_mod_left {
             compatible = "zmk,behavior-hold-tap";

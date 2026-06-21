@@ -311,6 +311,15 @@
             #binding-cells = <0>;
             bindings = <&sk LSHFT>, <&caps_word>;
         };
+
+        shift_space: shift_space {
+            compatible = "zmk,behavior-mod-morph";
+            label = "SHIFT_SPACE";
+            bindings = <&sticky_shift>, <&kp LG(SPACE)>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LGUI|MOD_RGUI)>;
+        };
     };
 
     keymap {
@@ -319,10 +328,10 @@
         base_layer {
             label = "BASE";
             bindings = <
-       &kp Q         &kp W        &kp E        &kp R          &kp T          &kp Y        &kp U          &kp I         &kp O        &kp SINGLE_QUOTE
-       &hml LCTRL A  &hml LALT S  &hml LGUI D  &hml LSHFT F   &kp G          &kp H        &hmr RSHFT J   &hmr RGUI K   &hmr RALT L  &hmr RCTRL SEMI
-&none  &kp Z         &kp X        &kp C        &kp V          &kp B          &kp N        &kp M          &comma_morph  &dot_morph   &qmark_morph      &none
-                                  &lt FN BSPC  &sticky_shift  &lt NUM TAB    &lt NUM RET  &lt NAV SPACE  &lt FN BSPC
+       &kp Q         &kp W        &kp E        &kp R         &kp T          &kp Y        &kp U          &kp I         &kp O        &kp SINGLE_QUOTE
+       &hml LCTRL A  &hml LALT S  &hml LGUI D  &hml LSHFT F  &kp G          &kp H        &hmr RSHFT J   &hmr RGUI K   &hmr RALT L  &hmr RCTRL SEMI
+&none  &kp Z         &kp X        &kp C        &kp V         &kp B          &kp N        &kp M          &comma_morph  &dot_morph   &qmark_morph      &none
+                                  &lt FN BSPC  &shift_space  &lt NUM TAB    &lt NUM RET  &lt NAV SPACE  &lt FN BSPC
             >;
         };
 

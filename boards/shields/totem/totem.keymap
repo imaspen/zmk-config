@@ -38,6 +38,9 @@
 #define COMBO_IDLE_FAST 150
 #define COMBO_IDLE_SLOW 50
 
+// My MacOS layout binds I to ;, thus caps word ends on I unless included here
+&caps_word { continue-list = <UNDERSCORE BACKSPACE DELETE SEMICOLON>; };
+
 / {
     combos {
         compatible = "zmk,combos";

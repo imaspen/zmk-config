@@ -67,7 +67,7 @@
         };
 
         combo_r_para {
-            key-positions = <18 19>;
+            key-positions = <17 18>;
             bindings = <&r_para_morph>;
             timeout-ms = <COMBO_TIMEOUT_FAST>;
             require-prior-idle-ms = <COMBO_IDLE_FAST>;

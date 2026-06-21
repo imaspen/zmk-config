@@ -30,28 +30,177 @@
 #define KEYS_R_THUMB 35 36 37
 #define KEYS_THUMBS  KEYS_L_THUMB KEYS_R_THUMB
 
+// Timings
+
+#define COMBO_TIMEOUT_FAST 18
+#define COMBO_TIMEOUT_SLOW 30
+#define COMBO_IDLE_FAST 150
+#define COMBO_IDLE_SLOW 50
+
 / {
     combos {
         compatible = "zmk,combos";
 
+        // Left hand horizontal combos
+
         combo_esc_l {
             key-positions = <1 2>;
             bindings = <&kp ESC>;
+            timeout-ms = <COMBO_TIMEOUT_FAST>;
+            idle-ms = <COMBO_IDLE_FAST>;
         };
+
+        // Right hand horizontal combos
 
         combo_esc_r {
             key-positions = <7 8>;
             bindings = <&kp ESC>;
+            timeout-ms = <COMBO_TIMEOUT_FAST>;
+            idle-ms = <COMBO_IDLE_FAST>;
+        };
+
+        combo_l_para {
+            key-positions = <16 17>;
+            bindings = <&l_para_morph>;
+            timeout-ms = <COMBO_TIMEOUT_FAST>;
+            idle-ms = <COMBO_IDLE_FAST>;
+        };
+
+        combo_r_para {
+            key-positions = <18 19>;
+            bindings = <&r_para_morph>;
+            timeout-ms = <COMBO_TIMEOUT_FAST>;
+            idle-ms = <COMBO_IDLE_FAST>;
+        };
+
+        combo_l_bracket {
+            key-positions = <27 28>;
+            bindings = <&kp LEFT_BRACKET>;
+            timeout-ms = <COMBO_TIMEOUT_FAST>;
+            idle-ms = <COMBO_IDLE_FAST>;
+        };
+
+        combo_r_bracket {
+            key-positions = <28 29>;
+            bindings = <&kp RIGHT_BRACKET>;
+            timeout-ms = <COMBO_TIMEOUT_FAST>;
+            idle-ms = <COMBO_IDLE_FAST>;
+        };
+
+        // Left hand vertical combos
+
+        combo_at {
+            bindings = <&kp AT>;
+            key-positions = <1 11>;
+            timeout-ms = <COMBO_TIMEOUT_SLOW>;
+            idle-ms = <COMBO_IDLE_SLOW>;
+        };
+
+        combo_hash {
+            bindings = <&kp HASH>;
+            key-positions = <2 12>;
+            timeout-ms = <COMBO_TIMEOUT_SLOW>;
+            idle-ms = <COMBO_IDLE_SLOW>;
+        };
+
+        combo_dollar {
+            bindings = <&kp DOLLAR>;
+            key-positions = <3 13>;
+            timeout-ms = <COMBO_TIMEOUT_SLOW>;
+            idle-ms = <COMBO_IDLE_SLOW>;
+        };
+
+        combo_percent {
+            bindings = <&kp PERCENT>;
+            key-positions = <4 14>;
+            timeout-ms = <COMBO_TIMEOUT_SLOW>;
+            idle-ms = <COMBO_IDLE_SLOW>;
+        };
+
+        combo_grave {
+            bindings = <&kp GRAVE>;
+            key-positions = <22 11>;
+            timeout-ms = <COMBO_TIMEOUT_SLOW>;
+            idle-ms = <COMBO_IDLE_SLOW>;
         };
 
         combo_bslash {
             bindings = <&kp BACKSLASH>;
             key-positions = <12 23>;
+            timeout-ms = <COMBO_TIMEOUT_SLOW>;
+            idle-ms = <COMBO_IDLE_SLOW>;
+        };
+
+        combo_equals {
+            bindings = <&kp EQUAL>;
+            key-positions = <13 24>;
+            timeout-ms = <COMBO_TIMEOUT_SLOW>;
+            idle-ms = <COMBO_IDLE_SLOW>;
+        };
+
+        combo_tilde {
+            bindings = <&kp TILDE>;
+            key-positions = <14 25>;
+            timeout-ms = <COMBO_TIMEOUT_SLOW>;
+            idle-ms = <COMBO_IDLE_SLOW>;
+        };
+
+        // Right hand vertical combos
+
+        combo_caret {
+            bindings = <&kp CARET>;
+            key-positions = <5 15>;
+            timeout-ms = <COMBO_TIMEOUT_SLOW>;
+            idle-ms = <COMBO_IDLE_SLOW>;
+        };
+
+        combo_plus {
+            bindings = <&kp PLUS>;
+            key-positions = <6 16>;
+            timeout-ms = <COMBO_TIMEOUT_SLOW>;
+            idle-ms = <COMBO_IDLE_SLOW>;
+        };
+
+        combo_star {
+            bindings = <&kp STAR>;
+            key-positions = <7 17>;
+            timeout-ms = <COMBO_TIMEOUT_SLOW>;
+            idle-ms = <COMBO_IDLE_SLOW>;
+        };
+
+        combo_ampersand {
+            bindings = <&kp AMPERSAND>;
+            key-positions = <8 18>;
+            timeout-ms = <COMBO_TIMEOUT_SLOW>;
+            idle-ms = <COMBO_IDLE_SLOW>;
+        };
+
+        combo_underscore {
+            bindings = <&kp UNDERSCORE>;
+            key-positions = <15 26>;
+            timeout-ms = <COMBO_TIMEOUT_SLOW>;
+            idle-ms = <COMBO_IDLE_SLOW>;
+        };
+
+        combo_dash {
+            bindings = <&kp MINUS>;
+            key-positions = <16 27>;
+            timeout-ms = <COMBO_TIMEOUT_SLOW>;
+            idle-ms = <COMBO_IDLE_SLOW>;
         };
 
         combo_fslash {
             bindings = <&kp FSLH>;
             key-positions = <17 28>;
+            timeout-ms = <COMBO_TIMEOUT_SLOW>;
+            idle-ms = <COMBO_IDLE_SLOW>;
+        };
+
+        combo_pipe {
+            bindings = <&kp PIPE>;
+            key-positions = <18 29>;
+            timeout-ms = <COMBO_TIMEOUT_SLOW>;
+            idle-ms = <COMBO_IDLE_SLOW>;
         };
     };
 };
@@ -132,6 +281,24 @@
             compatible = "zmk,behavior-mod-morph";
             label = "Question Mark/Exclamation Point";
             bindings = <&kp QUESTION>, <&kp EXCLAMATION>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        l_para_morph: l_para_morph {
+            compatible = "zmk,behavior-mod-morph";
+            label = "Left Parenthesis/Left Angle Bracket";
+            bindings = <&kp LEFT_PARENTHESIS>, <&kp LESS_THAN>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        r_para_morph: r_para_morph {
+            compatible = "zmk,behavior-mod-morph";
+            label = "Right Parenthesis/Right Angle Bracket";
+            bindings = <&kp RIGHT_PARENTHESIS>, <&kp GREATER_THAN>;
 
             #binding-cells = <0>;
             mods = <(MOD_LSFT|MOD_RSFT)>;

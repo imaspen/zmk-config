@@ -312,20 +312,20 @@
         base_layer {
             label = "BASE";
             bindings = <
-       &kp Q         &kp W        &kp E        &kp R           &kp T        &kp Y        &kp U          &kp I         &kp O        &kp SINGLE_QUOTE
-       &hml LCTRL A  &hml LALT S  &hml LGUI D  &hml LSHFT F    &kp G        &kp H        &hmr RSHFT J   &hmr RGUI K   &hmr RALT L  &hmr RCTRL SEMI
-&none  &kp Z         &kp X        &kp C        &kp V           &kp B        &kp N        &kp M          &comma_morph  &dot_morph   &qmark_morph      &none
-                                  &lt FN BSPC  &lt NAV SPACE   &lt NUM TAB  &lt NUM RET  &lt NAV SPACE  &lt FN BSPC
+       &kp Q         &kp W        &kp E        &kp R          &kp T          &kp Y        &kp U          &kp I         &kp O        &kp SINGLE_QUOTE
+       &hml LCTRL A  &hml LALT S  &hml LGUI D  &hml LSHFT F   &kp G          &kp H        &hmr RSHFT J   &hmr RGUI K   &hmr RALT L  &hmr RCTRL SEMI
+&none  &kp Z         &kp X        &kp C        &kp V          &kp B          &kp N        &kp M          &comma_morph  &dot_morph   &qmark_morph      &none
+                                  &lt FN BSPC  &lt NAV SPACE  &lt NUM TAB    &lt NUM RET  &lt NAV SPACE  &lt FN BSPC
             >;
         };
 
         nav_layer {
             label = "NAVI";
             bindings = <
-        &kp LG(Q)  &trans    &trans    &trans     &trans    &kp PG_UP  &mt (BSPC) LG(BSPC)  &mt (UP) LG(HOME)   &mt (DEL) LG(DEL)  &trans
-        &sk LCTRL  &sk LALT  &sk LCMD  &sk LSHFT  &trans    &kp PG_DN  &mt LEFT HOME        &mt (DOWN) LG(END)  &mt RIGHT END      &kp ENTER
-&trans  &trans     &trans    &trans    &trans     &trans    &kp INS    &kp TAB              &trans              &trans             &trans     &trans
-                             &trans    &trans     &trans    &trans     &trans               &trans
+        &kp LG(Q)  &trans    &trans    &trans     &trans    &kp PG_UP  &mt RG(BSPC) BSPC  &mt RG(HOME) UP   &mt RG(DEL) DEL  &trans
+        &sk LCTRL  &sk LALT  &sk LCMD  &sk LSHFT  &trans    &kp PG_DN  &mt HOME LEFT      &mt RG(END) DOWN  &mt END RIGHT    &kp ENTER
+&trans  &trans     &trans    &trans    &trans     &trans    &kp INS    &kp TAB            &trans            &trans           &trans     &trans
+                             &trans    &trans     &trans    &trans     &trans             &trans
             >;
         };
 

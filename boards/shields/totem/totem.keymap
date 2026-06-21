@@ -19,8 +19,9 @@
 
 #define BASE 0
 #define NAV  1
-#define SYM  2
-#define ADJ  3
+#define NUM  2
+#define FN   3
+#define ADJ  4
 
 // Key Groups
 
@@ -311,41 +312,62 @@
         base_layer {
             label = "BASE";
             bindings = <
-       &kp Q         &kp W        &kp E        &kp R          &kp T      &kp Y    &kp U          &kp I         &kp O        &kp SINGLE_QUOTE
-       &hml LCTRL A  &hml LALT S  &hml LGUI D  &hml LSHFT F   &kp G      &kp H    &hmr RSHFT J   &hmr RGUI K   &hmr RALT L  &hmr RCTRL SEMI
-&none  &kp Z         &kp X        &kp C        &kp V          &kp B      &kp N    &kp M          &comma_morph  &dot_morph   &qmark_morph      &none
-                                  &kp BSPC     &lt NAV SPACE  &kp TAB    &kp RET  &lt SYM SPACE  &kp BSPC
+       &kp Q         &kp W        &kp E        &kp R           &kp T        &kp Y        &kp U          &kp I         &kp O        &kp SINGLE_QUOTE
+       &hml LCTRL A  &hml LALT S  &hml LGUI D  &hml LSHFT F    &kp G        &kp H        &hmr RSHFT J   &hmr RGUI K   &hmr RALT L  &hmr RCTRL SEMI
+&none  &kp Z         &kp X        &kp C        &kp V           &kp B        &kp N        &kp M          &comma_morph  &dot_morph   &qmark_morph      &none
+                                  &lt FN BSPC  &lt NAV SPACE   &lt NUM TAB  &lt NUM RET  &lt NAV SPACE  &lt FN BSPC
             >;
         };
 
         nav_layer {
             label = "NAVI";
             bindings = <
-        &kp ESC    &trans     &kp UP    &kp EQUAL  &kp LBRC    &kp RBRC  &kp KP_N7      &kp KP_N8  &kp KP_N9  &kp KP_PLUS
-        &kp LSHFT  &kp LEFT   &kp DOWN  &kp RIGHT  &kp LBKT    &kp RBKT  &kp KP_N4      &kp KP_N5  &kp KP_N6  &kp KP_MINUS
-&trans  &kp DEL    &kp PG_UP  &kp CAPS  &kp PG_DN  &kp LPAR    &kp RPAR  &kp KP_N1      &kp KP_N2  &kp KP_N3  &kp KP_MULTIPLY  &trans
-                              &trans    &trans     &trans      &trans    &lt ADJ KP_N0  &trans
+        &kp LG(Q)  &trans    &trans    &trans     &trans    &kp PG_UP  &mt (BSPC) LG(BSPC)  &mt (UP) LG(HOME)   &mt (DEL) LG(DEL)  &trans
+        &sk LCTRL  &sk LALT  &sk LCMD  &sk LSHFT  &trans    &kp PG_DN  &mt LEFT HOME        &mt (DOWN) LG(END)  &mt RIGHT END      &kp ENTER
+&trans  &trans     &trans    &trans    &trans     &trans    &kp INS    &kp TAB              &trans              &trans             &trans     &trans
+                             &trans    &trans     &trans    &trans     &trans               &trans
             >;
         };
 
-        sim_layer {
-            label = "SYM";
+        num_layer {
             bindings = <
-        &kp EXCL     &kp AT       &kp HASH   &kp DLLR  &kp PRCNT    &kp CARET     &kp AMPS        &kp SQT     &kp DQT     &kp EQUAL
-        &kp RA(A)    &trans       &kp RA(S)  &trans    &trans       &kp C_MUTE    &kp LS(RA(N4))  &kp RA(N5)  &kp RA(N4)  &kp UNDER
-&trans  &kp RA(F18)  &kp RA(F19)  &trans     &trans    &trans       &kp C_VOL_DN  &kp C_VOL_UP    &kp C_PREV  &kp C_NEXT  &kp BSLH   &trans
-                                  &trans     &mo ADJ   &kp C_PP     &trans        &trans          &trans
+        &kp KP_NUMLOCK    &kp KP_N7        &kp KP_N8        &kp KP_N9         &trans    &trans  &trans  &trans  &trans  &trans
+        &hml LCTRL KP_N0  &hml LALT KP_N4  &hml LCMD KP_N5  &hml LSHFT KP_N6  &trans    &trans  &trans  &trans  &trans  &trans
+&trans  &trans            &kp KP_N1        &kp KP_N2        &kp KP_N3         &trans    &trans  &trans  &trans  &trans  &trans  &trans
+                                           &trans           &trans            &trans    &trans  &trans  &trans
             >;
+
+            label = "NUM";
+        };
+
+        fn_layer {
+            bindings = <
+        &kp F12         &kp F7        &kp F8        &kp F9         &trans    &trans      &kp C_PREV             &kp C_VOL_UP        &kp C_NEXT             &trans
+        &hml LCTRL F11  &hml LALT F4  &hml LCMD F5  &hml LSHFT F6  &trans    &trans      &hmr (RSHFT) RC(LEFT)  &hmr RCMD C_VOL_DN  &hmr (RALT) RC(RIGHT)  &trans
+&trans  &kp F10         &kp F1        &kp F2        &kp F3         &trans    &trans      &trans                 &trans              &trans                 &trans  &trans
+                                      &trans        &trans         &trans    &kp C_MUTE  &kp C_PP               &trans
+            >;
+
+            label = "FN";
         };
 
         adjust_layer {
             label = "ADJ";
             bindings = <
-                &sys_reset   &bt BT_CLR  &out OUT_TOG  &trans  &trans    &trans  &kp F7  &kp F8  &kp F9  &kp F12
-                &bootloader  &bt BT_NXT  &trans        &trans  &trans    &trans  &kp F4  &kp F5  &kp F6  &kp F11
-&studio_unlock  &trans       &bt BT_PRV  &trans        &trans  &trans    &trans  &kp F1  &kp F2  &kp F3  &kp F10  &trans
-                                         &trans        &trans  &trans    &trans  &trans  &trans
+                &sys_reset   &bt BT_CLR    &out OUT_TOG  &trans  &trans    &trans  &kp F7  &kp F8  &kp F9  &kp F12
+                &bootloader  &bt BT_SEL 0  &bt BT_SEL 1  &trans  &trans    &trans  &kp F4  &kp F5  &kp F6  &kp F11
+&studio_unlock  &trans       &trans        &trans        &trans  &trans    &trans  &kp F1  &kp F2  &kp F3  &kp F10  &trans
+                                           &trans        &trans  &trans    &trans  &trans  &trans
             >;
+        };
+    };
+
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+
+        adj_layer {
+            if-layers = <NAV NUM>;
+            then-layer = <ADJ>;
         };
     };
 };

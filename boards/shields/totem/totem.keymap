@@ -308,10 +308,11 @@
         shift_space: shift_space {
             compatible = "zmk,behavior-mod-morph";
             label = "SHIFT_SPACE";
-            bindings = <&sk LSHIFT>, <&kp LG(SPACE)>;
+            bindings = <&sk LSHIFT>, <&kp SPACE>;
 
             #binding-cells = <0>;
-            mods = <(MOD_LGUI|MOD_RGUI)>;
+            mods = <(MOD_LGUI|MOD_RGUI|MOD_LCTRL|MOD_RCTRL)>;
+            keep-mods = <(MOD_LGUI|MOD_RGUI|MOD_LCTRL|MOD_RCTRL)>;
         };
     };
 
